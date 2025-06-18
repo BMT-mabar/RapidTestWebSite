@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Technology - RapidTest.AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .active-nav-link {
+            color: #2563EB; /* blue-600 */
+            font-weight: 600;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #2563EB, #1D4ED8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 0%, #f0f4f8, #ffffff 50%);
+        }
+        .section-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(60, 130, 246, 0.07), transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        /* Entrance animations */
+        @keyframes slide-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-slide-in-up {
+            animation: slide-in-up 0.7s ease-out forwards;
+            opacity: 0; 
+        }
+        /* Staggered delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+
+        /* Animation for checkmark and cross */
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        .draw-icon {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+            animation: draw 0.5s 0.5s forwards;
+        }
+
+    </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 lg:px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <rect x="9" y="8" width="14" height="3" rx="1.5" fill="white"/>
+                    <rect x="14" y="11" width="4" height="12" fill="white"/>
+                    <path d="M14 23L16 26L18 23H14Z" fill="white"/>
+                    <rect x="15" y="18" width="2" height="5" fill="#A7F3D0"/>
+                    <path d="M15 23L16 24.5L17 23H15Z" fill="#A7F3D0"/>
+                </svg>
+                <span class="text-2xl font-bold text-blue-600">RapidTest.AI</span>
+            </a>
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+                <div class="relative dropdown">
+                    <button class="text-gray-600 hover:text-blue-600 transition duration-300 focus:outline-none flex items-center">
+                        About Us
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="dropdown-menu absolute bg-white shadow-xl rounded-lg py-2 mt-2 w-48 z-20">
+                        <a href="about.html#vision" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Our Vision</a>
+                        <a href="about.html#team" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Our Team</a>
+                        <a href="about.html#careers" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Careers</a>
+                    </div>
+                </div>
+                <a href="technology.html" class="text-gray-600 hover:text-blue-600 transition duration-300 active-nav-link">Technology</a>
+                <a href="market.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Market</a>
+                <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition-300">Contact</a>
+            </div>
+            <div class="hidden lg:flex items-center">
+                <a href="investors.html" class="bg-blue-600 text-white font-semibold py-2 px-5 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">For Investors</a>
+            </div>
+            <div class="lg:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden lg:hidden px-4 pb-4 space-y-2">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block py-2 text-gray-700 hover:text-blue-600">About Us</a>
+            <a href="technology.html" class="block py-2 text-gray-700 font-semibold active-nav-link">Technology</a>
+            <a href="market.html" class="block py-2 text-gray-700 hover:text-blue-600">Market</a>
+            <a href="contact.html" class="block py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <a href="investors.html" class="block mt-2 text-center bg-blue-600 text-white font-semibold py-2 px-5 rounded-lg shadow-md hover:bg-blue-700">For Investors</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-gradient pt-24 pb-20 lg:pt-32 lg:pb-28">
+            <div class="container mx-auto px-4 lg:px-6 text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight animate-slide-in-up">
+                    The Engine of <span class="gradient-text">Modern Diagnostics</span>
+                </h1>
+                <p class="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600 animate-slide-in-up delay-100">
+                    Discover the smart, secure, and scalable technology that powers RapidTest.AI, turning any smartphone into a clinical-grade diagnostic tool.
+                </p>
+            </div>
+        </section>
+
+        <div class="py-20 lg:py-24 space-y-24 lg:space-y-32 overflow-hidden">
+            <section class="container mx-auto px-4 lg:px-6">
+                 <div class="text-center mb-16 animate-slide-in-up">
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900">Technology in Action</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Our computer vision API, running on Edge-AI, delivers rapid and accurate results directly from a smartphone.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white p-6 rounded-2xl shadow-2xl border animate-slide-in-up delay-100">
+                    <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" aria-label="Detailed view of RapidTest.AI app analyzing a test cassette" role="img">
+                        <rect x="0" y="0" width="420" height="300" fill="#f9fafb" rx="20"/>
+                        <g transform="translate(10, 20)">
+                            <rect x="0" y="0" width="180" height="260" rx="20" fill="#4A5568" class="shadow-md"/>
+                            <rect x="5" y="5" width="170" height="250" rx="15" fill="#F7FAFC"/>
+                            <text x="90" y="30" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#2C5282" text-anchor="middle">RapidTest.AI</text>
+                            <rect x="15" y="45" width="150" height="130" fill="#E2E8F0" rx="10"/>
+                            <text x="90" y="60" font-family="Inter, sans-serif" font-size="9" fill="#4A5568" text-anchor="middle">Align Cassette in Guides</text>
+                            <rect x="30" y="80" width="120" height="40" fill="#FFFFFF" rx="5" stroke="#D1D5DB" stroke-width="0.5"/>
+                            <circle cx="48" cy="100" r="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+                            <text x="48" y="103" font-size="7" fill="#A0AEC0" text-anchor="middle">S</text>
+                            <rect x="65" y="90" width="75" height="20" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+                            <text x="85" y="87" font-size="7" fill="#A0AEC0">T</text>
+                            <text x="110" y="87" font-size="7" fill="#A0AEC0">C</text>
+                            <rect x="88" y="93" width="2.5" height="14" fill="#D62F2F" /> 
+                            <rect x="113" y="93" width="2.5" height="14" fill="#D62F2F" /> 
+                            <rect x="15" y="75" width="150" height="3" fill="#3B82F6" opacity="0.6">
+                                <animate attributeName="y" values="75;165;75" dur="1.5s" repeatCount="indefinite" />
+                            </rect>
+                            <text x="90" y="145" font-family="Inter, sans-serif" font-size="10" fill="#3B82F6" text-anchor="middle">ANALYZING...</text>
+                            <text x="90" y="160" font-family="Inter, sans-serif" font-size="9" fill="#4A5568" text-anchor="middle">QC Status: Passed ✓</text>
+                            <rect x="15" y="190" width="150" height="50" fill="#FEE2E2" rx="10"/>
+                            <text x="90" y="218" font-family="Inter, sans-serif" font-size="16" font-weight="bold" fill="#B91C1C" text-anchor="middle">Result: POSITIVE</text>
+                        </g>
+                        <g transform="translate(210, 70)">
+                            <path d="M0 80 Q20 60 40 80 Q20 100 0 80" fill="#BFDBFE" opacity="0.8">
+                                <animateTransform attributeName="transform" type="translate" values="0 0; 5 0; 0 0" dur="2s" repeatCount="indefinite" />
+                            </path>
+                            <path d="M10 80 Q30 60 50 80 Q30 100 10 80" fill="#93C5FD" opacity="0.8">
+                                <animateTransform attributeName="transform" type="translate" values="0 0; 5 0; 0 0" dur="2s" begin="0.2s" repeatCount="indefinite" />
+                            </path>
+                            <text x="45" y="140" font-family="Inter, sans-serif" font-size="10" fill="#4A5568" text-anchor="middle">Data Sent</text>
+                        </g>
+                        <g transform="translate(290, 70)">
+                            <rect x="0" y="20" width="110" height="120" rx="8" fill="#FFFFFF" class="shadow-md"/>
+                            <rect x="0" y="20" width="110" height="20" rx="8" fill="#3B82F6"/>
+                            <text x="55" y="34" font-family="Inter, sans-serif" font-size="8" fill="white" text-anchor="middle">EHR/LIS System</text>
+                            <text x="10" y="60" font-family="Inter, sans-serif" font-size="9" fill="#1E40AF">Patient ID: ****345</text>
+                            <text x="10" y="80" font-family="Inter, sans-serif" font-size="9" fill="#1E40AF">Result: <tspan font-weight="bold" fill="#B91C1C">POSITIVE</tspan></text>
+                            <rect x="10" y="95" width="90" height="5" fill="#BFDBFE" rx="2.5"/>
+                            <rect x="10" y="105" width="70" height="5" fill="#BFDBFE" rx="2.5"/>
+                            <text x="55" y="130" font-size="9" font-weight="bold" fill="#16A34A" text-anchor="middle">✓ Verified</text>
+                        </g>
+                    </svg>
+                </div>
+            </section>
+            
+            <section class="container mx-auto px-4 lg:px-6 relative section-glow">
+                <div class="space-y-20 lg:space-y-24">
+                    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                        <div class="animate-slide-in-up">
+                            <h3 class="text-3xl font-bold text-gray-900">Advanced Computer Vision Core</h3>
+                            <p class="mt-4 text-lg text-gray-600">Our API leverages sophisticated algorithms to interpret a wide array of lateral-flow tests with high accuracy, assessing color intensity and delivering a result in under 60 seconds. Built-in QC checks ensure reliable readings every time.</p>
+                        </div>
+                        <div class="bg-gray-50/80 p-8 rounded-2xl animate-slide-in-up delay-100">
+                            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram of Computer Vision Process" role="img">
+                                <defs>
+                                    <style>.flow-text-lg{font-family:'Inter',sans-serif;font-size:12px;fill:#4A5568;text-anchor:middle;font-weight:600;}.flow-circle{fill:white;stroke-width:2px}.flow-line{stroke-width:2;stroke-dasharray:5 5}</style>
+                                    <marker id="arrowhead-lg" markerWidth="10" markerHeight="7" refX="5" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#A0AEC0"/></marker>
+                                </defs>
+                                <path d="M60 75 h 280" stroke="#E5E7EB" stroke-width="2"/>
+                                <path d="M60 75 h 280" stroke="#3B82F6" stroke-width="3" stroke-linecap="round">
+                                    <animate attributeName="stroke-dasharray" values="0 280; 280 0" dur="2s" repeatCount="indefinite" />
+                                </path>
+                                <g>
+                                    <circle cx="60" cy="75" r="20" class="flow-circle" stroke="#3B82F6"/>
+                                    <path d="M52 75h16m-8-8v16m-4-4l-4 4m16 0l-4-4" stroke="#3B82F6" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                                    <text y="125" x="60" class="flow-text-lg">Image Capture</text>
+                                </g>
+                                <g>
+                                    <circle cx="200" cy="75" r="20" class="flow-circle" stroke="#3B82F6"/>
+                                    <path d="M195 70 h10v10h-10z M192 67 l8 8 m-8 0l8-8" stroke="#3B82F6" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                                    <text y="125" x="200" class="flow-text-lg">AI Analysis</text>
+                                </g>
+                                <g>
+                                    <circle cx="340" cy="75" r="20" class="flow-circle" stroke="#34D399"/>
+                                    <path d="M333 75l5 5 9-9" stroke="#34D399" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <text y="125" x="340" class="flow-text-lg">Secure Result</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                        <div class="lg:order-2 animate-slide-in-up">
+                            <h3 class="text-3xl font-bold text-gray-900">The Edge-AI Advantage</h3>
+                            <p class="mt-4 text-lg text-gray-600">By processing data directly on the user's device, we enhance data privacy and deliver rapid results. This approach eliminates cloud latency and functions effectively even in low-connectivity environments.</p>
+                        </div>
+                         <div class="lg:order-1 bg-gray-50/80 p-8 rounded-2xl animate-slide-in-up delay-100">
+                           <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" aria-label="Comparison of Edge AI and Cloud AI" role="img">
+                                <text x="65" y="25" font-family="Inter" font-size="13" font-weight="bold" text-anchor="middle">Edge AI (Ours)</text>
+                                <text x="255" y="25" font-family="Inter" font-size="13" font-weight="bold" text-anchor="middle">Cloud AI</text>
+                                
+                                <rect x="15" y="40" width="100" height="100" fill="#E6FFFA" rx="12" stroke="#B2F5EA"/>
+                                <text x="65" y="120" text-anchor="middle">
+                                    <tspan x="65" dy="0" font-family="Inter" font-size="11" font-weight="600" fill="#047857">Fast & Private</tspan>
+                                </text>
+                                <path d="M53 85 l10 10 l20 -20" stroke="#34D399" stroke-width="4" fill="none" class="draw-icon" stroke-linecap="round" stroke-linejoin="round"/>
+
+                                <rect x="205" y="40" width="100" height="100" fill="#FEF2F2" rx="12" stroke="#FECACA"/>
+                                <text x="255" y="115" text-anchor="middle">
+                                    <tspan x="255" dy="0" font-family="Inter" font-size="11" font-weight="600" fill="#991B1B">Slower &</tspan>
+                                    <tspan x="255" dy="1.2em" font-family="Inter" font-size="11" font-weight="600" fill="#991B1B">Less Private</tspan>
+                                </text>
+                                <g transform="translate(242, 72)" stroke="#EF4444" stroke-width="4" class="draw-icon" stroke-linecap="round">
+                                    <path d="M0 0 l20 20"/>
+                                    <path d="M20 0 l-20 20"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                        <div class="animate-slide-in-up">
+                            <h3 class="text-3xl font-bold text-gray-900">Assay-Agnostic & Rapid Onboarding</h3>
+                            <p class="mt-4 text-lg text-gray-600">Our platform is designed to be compatible with various test formats including cassettes, strips, and other devices. A single, robust codebase allows us to efficiently onboard new assays in less than 4 weeks, ensuring adaptability and scalability.</p>
+                        </div>
+                        <div class="bg-gray-50/80 p-8 rounded-2xl animate-slide-in-up delay-100">
+                           <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" aria-label="Montage of different test types" role="img"><style>.test-text { font-family: 'Inter', sans-serif; font-size: 11px; fill: #4A5568; text-anchor: middle;}</style><rect x="20" y="50" width="110" height="50" fill="white" rx="8" stroke="#E5E7EB" stroke-width="1.5"/><rect x="30" y="60" width="25" height="30" fill="#EBF8FF" rx="3"/><circle cx="85" cy="75" r="12" fill="#EBF8FF"/><text x="75" y="115" class="test-text">Cassette Test</text><rect x="150" y="30" width="40" height="100" fill="white" rx="5" stroke="#E5E7EB" stroke-width="1.5"/><rect x="158" y="45" width="24" height="15" fill="#BEE3F8"/><rect x="158" y="70" width="24" height="15" fill="#90CDF4"/><text x="170" y="140" class="test-text">Dip Strip</text><ellipse cx="260" cy="75" rx="40" ry="25" fill="white" stroke="#E5E7EB" stroke-width="1.5"/><rect x="240" y="90" width="40" height="25" fill="#EBF8FF" rx="4"/><text x="260" y="125" class="test-text">Custom Device</text></svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <section class="container mx-auto px-4 lg:px-6">
+                 <div class="text-center mb-16 animate-slide-in-up">
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900">Key Features & Benefits</h2>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg border animate-slide-in-up"><h4 class="font-bold text-lg text-blue-700 mb-2">Rapid Results & Auto-QC</h4><p class="text-gray-600">Under 60-second results with automated quality control for lighting and angle.</p></div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg border animate-slide-in-up delay-100"><h4 class="font-bold text-lg text-blue-700 mb-2">Secure Data Transmission</h4><p class="text-gray-600">Encrypted push to EHR/LIS systems or public-health dashboards.</p></div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg border animate-slide-in-up delay-200"><h4 class="font-bold text-lg text-blue-700 mb-2">Privacy by Design</h4><p class="text-gray-600">Zero-Data architecture with no local PHI storage eases regulatory compliance.</p></div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg border animate-slide-in-up"><h4 class="font-bold text-lg text-blue-700 mb-2">Scalable SaaS Model</h4><p class="text-gray-600">Per-scan fee model for test kit makers and healthcare payers.</p></div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg border animate-slide-in-up delay-100"><h4 class="font-bold text-lg text-blue-700 mb-2">Cost-Efficient Edge-AI</h4><p class="text-gray-600">Reduced cloud expenses and enhanced performance in all conditions.</p></div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg border animate-slide-in-up delay-200"><h4 class="font-bold text-lg text-blue-700 mb-2">Accessible Webapp</h4><p class="text-gray-600">No app download required, ensuring ease of use and maximum accessibility.</p></div>
+                </div>
+            </section>
+        </div>
+
+        <section class="py-20 lg:py-24 bg-gray-50">
+            <div class="container mx-auto px-4 lg:px-6 text-center">
+                 <div class="flex justify-center animate-slide-in-up">
+                    <div class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                 </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-6 animate-slide-in-up delay-100">Defensible Intellectual Property</h2>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto animate-slide-in-up delay-200">
+                    Our innovation is protected by a <strong class="text-blue-600">granted USA patent</strong> covering all claims, with several continuations submitted. National Phase applications are underway in multiple key territories, solidifying our unique and defensible position in the market.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="white"/>
+                            <rect x="9" y="8" width="14" height="3" rx="1.5" fill="#2563EB"/>
+                            <rect x="14" y="11" width="4" height="12" fill="#2563EB"/>
+                            <path d="M14 23L16 26L18 23H14Z" fill="#2563EB"/>
+                            <rect x="15" y="18" width="2" height="5" fill="#4F46E5"/>
+                            <path d="M15 23L16 24.5L17 23H15Z" fill="#4F46E5"/>
+                        </svg>
+                        <span class="text-2xl font-bold text-white">RapidTest.AI</span>
+                    </a>
+                    <p class="mt-4 text-sm">Turning self-tests into clinical-grade data - in seconds.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="technology.html" class="hover:text-white transition">Technology</a></li>
+                        <li><a href="careers.html" class="hover:text-white transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Stakeholders</h3>
+                    <ul class="space-y-3">
+                        <li><a href="market.html" class="hover:text-white transition">Market Opportunity</a></li>
+                        <li><a href="investors.html" class="hover:text-white transition">For Investors</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Connect</h3>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="hover:text-white" aria-label="LinkedIn"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg></a>
+                        <a href="#" class="hover:text-white" aria-label="Twitter"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-800 pt-8 text-center text-sm">
+                <p>&copy; <span id="currentYear"></span> RapidTest.AI Inc. All rights reserved. | <a href="privacy.html" class="hover:text-white">Privacy Policy</a> | <a href="terms.html" class="hover:text-white">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Set Current Year in Footer
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+            
+            // Intersection Observer for Animations
+            const animatedElements = document.querySelectorAll('.animate-slide-in-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+            });
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
